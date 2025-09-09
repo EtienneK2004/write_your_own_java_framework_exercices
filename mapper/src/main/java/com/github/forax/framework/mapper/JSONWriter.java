@@ -6,21 +6,26 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public final class JSONWriter {
-  private static class PropertyClassValue extends ClassValue<List<Property>> {
+
+  private interface JSONFunction {
+    String apply(JSONWriter jsonWriter, Object instance);
+  }
+
+  private static class PropertyClassValue extends ClassValue<List<JSONFunction>> {
 
     @Override
-    protected List<Property> computeValue(Class<?> type) {
+    protected List<JSONFunction> computeValue(Class<?> type) {
       return Arrays.stream(Utils.beanInfo(type).getPropertyDescriptors())
           .filter(propertyDescriptor -> !"class".equals(propertyDescriptor.getName()))
           .map(propertyDescriptor ->
-              new Property('"' + propertyDescriptor.getName() + "\": ", propertyDescriptor.getReadMethod()))
+              (JSONFunction) (JSONWriter writer, Object o) ->
+                  '"' + propertyDescriptor.getName() + "\": " + writer.toJSON(Utils.invokeMethod(o, propertyDescriptor.getReadMethod()))
+          )
           .toList();
     }
   }
 
-  private static final ClassValue<List<Property>> CLASS_VALUE = new PropertyClassValue();
-
-  private record Property(String key, Method method) {}
+  private static final ClassValue<List<JSONFunction>> CLASS_VALUE = new PropertyClassValue();
 
 
   public String toJSON(Object o) {
@@ -35,9 +40,9 @@ public final class JSONWriter {
   }
 
   private String beanToJSON(Object o) {
-    var properties = CLASS_VALUE.get(o.getClass());
-    return properties.stream()
-        .map(property-> property.key() + toJSON(Utils.invokeMethod(o, property.method())))
+    var jsonFunctions = CLASS_VALUE.get(o.getClass());
+    return jsonFunctions.stream()
+        .map(func -> func.apply(this, o))
         .collect(Collectors.joining(", ", "{", "}"));
   }
 }
