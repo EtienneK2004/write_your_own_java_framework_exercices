@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="update IntelliJ files">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/maven.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/maven.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mapper/src/main/java/com/github/forax/framework/mapper/JSONWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/mapper/src/main/java/com/github/forax/framework/mapper/JSONWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mapper/src/test/java/com/github/forax/framework/mapper/JSONWriterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mapper/src/test/java/com/github/forax/framework/mapper/JSONWriterTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,11 +43,17 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.JSONWriterTest$Q1.executor": "Run",
+    "JUnit.JSONWriterTest$Q2.executor": "Run",
+    "JUnit.JSONWriterTest.executor": "Run",
+    "JUnit.ToyJSONParserTest.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "full.screen.before.presentation.mode": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/Users/forax/git/write_your_own_java_framework_exercices/interceptor",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/epigep-in-3/etienne.kita/git/write_your_own_java_framework_exercices",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -53,7 +61,8 @@
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.sourceCode.JAVA"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -78,37 +87,7 @@
       <command value="mvn package" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.InjectorRegistryTest">
-    <configuration name="InjectorRegistryTest$Q1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="injector" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.github.forax.framework.injector.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.github.forax.framework.injector.InjectorRegistryTest" />
-      <option name="MAIN_CLASS_NAME" value="com.github.forax.framework.injector.InjectorRegistryTest$Q1" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="InjectorRegistryTest$Q2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="injector" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.github.forax.framework.injector.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.github.forax.framework.injector.InjectorRegistryTest" />
-      <option name="MAIN_CLASS_NAME" value="com.github.forax.framework.injector.InjectorRegistryTest$Q2" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.JSONWriterTest">
     <configuration name="InjectorRegistryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="injector" />
       <extension name="coverage">
@@ -154,17 +133,57 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="JSONWriterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mapper" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.github.forax.framework.mapper.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.github.forax.framework.mapper" />
+      <option name="MAIN_CLASS_NAME" value="com.github.forax.framework.mapper.JSONWriterTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ToyJSONParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mapper" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.github.forax.framework.mapper.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.github.forax.framework.mapper" />
+      <option name="MAIN_CLASS_NAME" value="com.github.forax.framework.mapper.ToyJSONParserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.InjectorRegistryTest" />
-        <item itemvalue="JUnit.InjectorRegistryTest$Q2" />
-        <item itemvalue="JUnit.InjectorRegistryTest$Q1" />
+        <item itemvalue="JUnit.JSONWriterTest" />
         <item itemvalue="JUnit.JSONWriterTest$Q2" />
         <item itemvalue="JUnit.JSONWriterTest$Q1" />
+        <item itemvalue="JUnit.ToyJSONParserTest" />
+        <item itemvalue="JUnit.InjectorRegistryTest" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="update IntelliJ files" />
+      <created>1757404567326</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757404567326</updated>
+    </task>
+    <servers />
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
