@@ -15,6 +15,7 @@ import static java.lang.annotation.ElementType.METHOD;
 import static java.util.stream.Collectors.toSet;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -24,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 @SuppressWarnings("unused")
 public class InjectorRegistryTest {
-  /*
+
   @Nested
   public class Q1 {
     @Test @Tag("Q1")
@@ -343,7 +344,7 @@ public class InjectorRegistryTest {
       var registry = new InjectorRegistry();
       registry.registerProviderClass(D.class, E.class);
       var d = registry.lookupInstance(D.class);
-      assertTrue(d instanceof E);
+      assertInstanceOf(E.class, d);
     }
 
     public interface F {}
@@ -545,5 +546,4 @@ public class InjectorRegistryTest {
       assertThrows(NullPointerException.class, () -> registry.registerProviderClass(null));
     }
   }
-  */
 }
