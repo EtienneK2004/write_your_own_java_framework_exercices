@@ -120,7 +120,7 @@ public final class InterceptorRegistry {
     var annotations = method.getAnnotations();
     return Stream.of(annotations)
         .flatMap(a -> {
-          var aClass = a.getClass();
+          var aClass = a.annotationType();
           var interceptors = interceptorMap.getOrDefault(aClass, List.of());
           return interceptors.stream();
         }).toList();
