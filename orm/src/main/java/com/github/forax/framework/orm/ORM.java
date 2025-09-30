@@ -1,6 +1,7 @@
 package com.github.forax.framework.orm;
 
 import javax.sql.DataSource;
+import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.io.Serial;
 import java.lang.annotation.Annotation;
@@ -13,12 +14,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -90,6 +95,9 @@ public final class ORM {
       } catch(SQLException e) {
         connection.rollback();
         throw e;
+      } catch (UncheckedSQLException e) {
+        connection.rollback();
+        throw e.getCause();
       } finally {
         CONNECTION_THREAD_LOCAL.remove();
       }
@@ -178,20 +186,103 @@ public final class ORM {
         .filter(p -> !p.getName().equals("class"))
         .toList();
     var constructor = Utils.defaultConstructor(beanType);
-    InvocationHandler invocationHandler = (Object proxy, Method method, Object[] args) ->
-        switch(method.getName()) {
+    var columnNames = properties.stream()
+        .map(ORM::findColumnName)
+        .toList();
+    var idProperty = properties.stream()
+        .filter(p -> ORM.hasAnnotation(p, Id.class))
+        .findFirst()
+        .orElse(null);
+    var columnNamesMap = properties.stream()
+        .collect(Collectors.toMap(
+            PropertyDescriptor::getName,
+            ORM::findColumnName
+        ));
+    InvocationHandler invocationHandler = (Object proxy, Method method, Object[] args) -> {
+      try {
+
+        var methodName = method.getName();
+        return switch (methodName) {
           case "findAll" -> findAll(tableName, properties, constructor);
+          case "save" -> save(args[0], tableName, columnNames, properties, idProperty);
+          case "findById" -> findById(tableName, properties, constructor, idProperty, args[0]);
           case "equals", "hashCode", "toString" -> throw new UnsupportedOperationException("Not yet implemented");
-          default -> throw new IllegalStateException("Unexpected value: " + method.getName());
+          default -> {
+            var query = method.getAnnotation(Query.class);
+            if(query != null) {
+              yield findByQuery(properties, constructor, query.value(), args != null ? args : new Object[0]);
+            }
+
+            if (methodName.startsWith("findBy")) {
+              var propertyName = Introspector.decapitalize(methodName.substring("findBy".length()));
+              var colName = columnNamesMap.get(propertyName);
+              if(colName == null) {
+                throw new IllegalArgumentException(propertyName + " is not a column.");
+              }
+              yield findByQuery(properties, constructor,
+                  "SELECT * FROM " + tableName + " WHERE " + colName + "=?;", args[0])
+                  .stream().findFirst();
+            }
+
+            throw new IllegalStateException("Unexpected value: " + methodName);
+          }
         };
+      } catch (SQLException e) {
+        throw new UncheckedSQLException(e);
+      }
+    };
 
     return repositoryType.cast(Proxy.newProxyInstance(repositoryType.getClassLoader(), new Class<?>[]{ repositoryType}, invocationHandler));
   }
 
+  static Object save(Object object, String tableName, List<String> columnNames, List<PropertyDescriptor> properties, PropertyDescriptor idProperty) throws SQLException {
+    Objects.requireNonNull(object);
+    var connection = currentConnection();
+
+    var columns = String.join(", ", columnNames);
+    var args = String.join(", ", Collections.nCopies(columnNames.size(), "?"));
+    var update = "MERGE INTO " + tableName + " (" + columns + ") VALUES (" + args + ");";
+
+    System.err.println(update);
+
+    try(PreparedStatement statement = connection.prepareStatement(update, Statement.RETURN_GENERATED_KEYS)) {
+
+      for (int i = 0, propertiesSize = properties.size(); i < propertiesSize; i++) {
+        var property = properties.get(i);
+        var getter = property.getReadMethod();
+        var value = Utils.invokeMethod(object, getter);
+        statement.setObject(i + 1, value);
+      }
+      statement.executeUpdate();
+
+      try(var resultSet = statement.getGeneratedKeys()) {
+        if (resultSet.next()) {
+          var id = resultSet.getObject(1);
+          var setter = idProperty.getWriteMethod();
+          Utils.invokeMethod(object, setter, id);
+        }
+      }
+    }
+    return object;
+  }
+
   private static List<?> findAll(String tableName, List<PropertyDescriptor> properties, Constructor<?> constructor) throws SQLException {
     String sqlQuery = "SELECT * FROM " + tableName + ";";
+    return findByQuery(properties, constructor, sqlQuery);
+  }
+
+  private static Optional<?> findById(String tableName, List<PropertyDescriptor> properties, Constructor<?> constructor, PropertyDescriptor idProp, Object... args) throws SQLException {
+    if (idProp == null) return Optional.empty();
+    String sqlQuery = "SELECT * FROM " + tableName + " WHERE " + findColumnName(idProp) + "= ?;";
+    return findByQuery(properties, constructor, sqlQuery, args[0]).stream().findFirst();
+  }
+
+  private static List<?> findByQuery(List<PropertyDescriptor> properties, Constructor<?> constructor, String sqlQuery, Object... args) throws SQLException {
     var connection = currentConnection();
     try(PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+      for(var i = 0; i < args.length; i++) {
+        statement.setObject(i + 1, args[i]);
+      }
       try(ResultSet resultSet = statement.executeQuery()) {
         var list = new ArrayList<Object>();
         while(resultSet.next()) {
