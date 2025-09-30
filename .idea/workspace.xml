@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="update IntelliJ files">
+    <list default="true" id="74bd28e4-ede9-4bbb-a92f-dae249a45c06" name="Changes" comment="[EKT] Séance 2">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interceptor/src/main/java/org/github/forax/framework/interceptor/InterceptorRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/interceptor/src/main/java/org/github/forax/framework/interceptor/InterceptorRegistry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interceptor/src/test/java/org/github/forax/framework/interceptor/InterceptorRegistryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/interceptor/src/test/java/org/github/forax/framework/interceptor/InterceptorRegistryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orm/src/main/java/com/github/forax/framework/orm/ORM.java" beforeDir="false" afterPath="$PROJECT_DIR$/orm/src/main/java/com/github/forax/framework/orm/ORM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orm/src/test/java/com/github/forax/framework/orm/ORMTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/orm/src/test/java/com/github/forax/framework/orm/ORMTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,12 +19,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "EtienneK2004"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;EtienneK2004&quot;
   }
-}]]></component>
+}</component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
       <filtered-out-file-type name="LOCAL_BRANCH" />
@@ -32,12 +33,12 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:EtienneK2004/write_your_own_java_framework_exercices.git",
-    "accountId": "a7aa6759-44d8-4a32-af8e-c6fb40829dae"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:EtienneK2004/write_your_own_java_framework_exercices.git&quot;,
+    &quot;accountId&quot;: &quot;a7aa6759-44d8-4a32-af8e-c6fb40829dae&quot;
   }
-}]]></component>
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -59,6 +60,10 @@
     "JUnit.JSONWriterTest$Q1.executor": "Run",
     "JUnit.JSONWriterTest$Q2.executor": "Run",
     "JUnit.JSONWriterTest.executor": "Run",
+    "JUnit.ORMTest$Q1.executor": "Run",
+    "JUnit.ORMTest$Q2.executor": "Run",
+    "JUnit.ORMTest$Q3.executor": "Run",
+    "JUnit.ORMTest.executor": "Run",
     "JUnit.ToyJSONParserTest.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -102,22 +107,7 @@
       <command value="mvn package" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.InterceptorRegistryTest">
-    <configuration name="InjectorRegistryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="injector" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.github.forax.framework.injector.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.github.forax.framework.injector" />
-      <option name="MAIN_CLASS_NAME" value="com.github.forax.framework.injector.InjectorRegistryTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.ORMTest">
     <configuration name="InterceptorRegistryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="interceptor" />
       <extension name="coverage">
@@ -133,46 +123,61 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JSONWriterTest$Q1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mapper" />
+    <configuration name="ORMTest$Q1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="orm" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.github.forax.framework.mapper.*" />
+          <option name="PATTERN" value="com.github.forax.framework.orm.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.github.forax.framework.mapper.JSONWriterTest" />
-      <option name="MAIN_CLASS_NAME" value="com.github.forax.framework.mapper.JSONWriterTest$Q1" />
+      <option name="PACKAGE_NAME" value="com.github.forax.framework.orm.ORMTest" />
+      <option name="MAIN_CLASS_NAME" value="com.github.forax.framework.orm.ORMTest$Q1" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JSONWriterTest$Q2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mapper" />
+    <configuration name="ORMTest$Q2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="orm" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.github.forax.framework.mapper.*" />
+          <option name="PATTERN" value="com.github.forax.framework.orm.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.github.forax.framework.mapper.JSONWriterTest" />
-      <option name="MAIN_CLASS_NAME" value="com.github.forax.framework.mapper.JSONWriterTest$Q2" />
+      <option name="PACKAGE_NAME" value="com.github.forax.framework.orm.ORMTest" />
+      <option name="MAIN_CLASS_NAME" value="com.github.forax.framework.orm.ORMTest$Q2" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JSONWriterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mapper" />
+    <configuration name="ORMTest$Q3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="orm" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.github.forax.framework.mapper.*" />
+          <option name="PATTERN" value="com.github.forax.framework.orm.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.github.forax.framework.mapper" />
-      <option name="MAIN_CLASS_NAME" value="com.github.forax.framework.mapper.JSONWriterTest" />
+      <option name="PACKAGE_NAME" value="com.github.forax.framework.orm.ORMTest" />
+      <option name="MAIN_CLASS_NAME" value="com.github.forax.framework.orm.ORMTest$Q3" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ORMTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="orm" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.github.forax.framework.orm.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.github.forax.framework.orm" />
+      <option name="MAIN_CLASS_NAME" value="com.github.forax.framework.orm.ORMTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -180,11 +185,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ORMTest" />
+        <item itemvalue="JUnit.ORMTest$Q3" />
+        <item itemvalue="JUnit.ORMTest$Q2" />
+        <item itemvalue="JUnit.ORMTest$Q1" />
         <item itemvalue="JUnit.InterceptorRegistryTest" />
-        <item itemvalue="JUnit.InjectorRegistryTest" />
-        <item itemvalue="JUnit.JSONWriterTest" />
-        <item itemvalue="JUnit.JSONWriterTest$Q2" />
-        <item itemvalue="JUnit.JSONWriterTest$Q1" />
       </list>
     </recent_temporary>
   </component>
@@ -197,6 +202,23 @@
       <option name="presentableId" value="Default" />
       <updated>1757404567326</updated>
     </task>
+    <task id="LOCAL-00001" summary="[EKT] Séance 2">
+      <option name="closed" value="true" />
+      <created>1758817288413</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1758817288413</updated>
+    </task>
+    <task id="LOCAL-00002" summary="[EKT] Séance 2">
+      <option name="closed" value="true" />
+      <created>1758817491161</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1758817491161</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,7 +237,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add a section on dependency checking" />
     <MESSAGE value="Utils.defaultConstructor and Utils.newInstance should propagate the type of the class" />
     <MESSAGE value="do not try to validate the dependency graph before calling lookup()" />
     <MESSAGE value="comment starts at the wrong place" />
@@ -240,6 +261,7 @@
     <MESSAGE value="update to Java 21" />
     <MESSAGE value="remove useless throws Throwable" />
     <MESSAGE value="update IntelliJ files" />
-    <option name="LAST_COMMIT_MESSAGE" value="update IntelliJ files" />
+    <MESSAGE value="[EKT] Séance 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="[EKT] Séance 2" />
   </component>
 </project>
